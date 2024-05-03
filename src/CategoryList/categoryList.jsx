@@ -1,13 +1,13 @@
 import {useEffect ,useState} from "react";
-import axios from "../axios.js";
 import Loading from "../Loading/loading";
 import SearchBar from "../SearchBar/searchBar";
+import axios from "axios";
 const CategoryList = ({filterItems ,children}) => {
     const [loading,setLoading] = useState(true);
     const  [categories , setCategories] = useState([]);
     useEffect(() => {
       const fetchCat = async  ()=> {
-          const response = await  axios.get('/FoodCategory/categories');
+          const response = await  axios.get('https://react-mini-projects-api.classbon.com/FoodCategory/categories');
           setCategories(response.data);
           setLoading(false);
       }

@@ -2,11 +2,11 @@ import './App.css';
 import Header from "./Header/header";
 import CategoryList from "./CategoryList/categoryList";
 import {useEffect, useState} from "react";
-import axios from "../src/axios";
 import Loading from "./Loading/loading";
 import FastFoodList from "./FastFoodList/fastFoodList";
 import SearchBar from "./SearchBar/searchBar";
 import notfound from '../src/assets/images/404.png'
+import axios from "axios";
 
 function App() {
   const [loading,setLoading] = useState(false);
@@ -15,7 +15,7 @@ function App() {
   const fetchData = async (categoryId = null) => {
       setLoading(true);
       const response = await axios.get(
-          `/FastFood/list/${categoryId ? "?categoryId=" + categoryId: ""}`
+          `https://react-mini-projects-api.classbon.com/FastFood/list/${categoryId ? "?categoryId=" + categoryId: ""}`
       );
       setLoading(false);
       setFastFoods(response.data);
@@ -24,7 +24,7 @@ function App() {
 
   const searchItems = async (term) => {
       setLoading(true);
-      const response = await axios.get(`/FastFood/search/${term ? "?term=" + term : ""}`);
+      const response = await axios.get(`https://react-mini-projects-api.classbon.com/FastFood/search/${term ? "?term=" + term : ""}`);
       setLoading(false)
       setFastFoods(response.data)
   }
